@@ -1,0 +1,28 @@
+.search{
+  justify-content: center;
+  padding-left: 25%;
+  padding-top: 20px;
+  height: auto;
+  width: auto;
+}
+.app{
+  display: block;
+}
+.input{
+  border: 1px solid purple;
+  border-radius: 5px;
+  height: 30px;
+  width: 50%;
+}
+.search_button{
+  background-color: lawngreen;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+}
+.search_button:hover{
+  background-color: rgb(16, 187, 16);
+  cursor: pointer;
+}
+

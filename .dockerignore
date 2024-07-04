@@ -1,0 +1,10 @@
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/node_modules
+node_modules
+build
+.git
+.vscode
+.idea
+*.log
