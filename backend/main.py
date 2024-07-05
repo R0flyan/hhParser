@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
 import psycopg2
+import os
 
 app = FastAPI()
 
@@ -44,9 +45,13 @@ def get_connection():
         dbname="postgres",
         user="postgres",
         password="Barca5020pgsql",
-        host="localhost"
+        host="host.docker.internal"
     )
     return connection
+# def get_connection():
+#     DATABASE_URL = os.getenv('postgresql://postgres:Barca5020pgsql@<localhost>:5432/postgres')
+#     connection = psycopg2.connect(DATABASE_URL)
+#     return connection
 
 def clear_table():
     connection = get_connection()
