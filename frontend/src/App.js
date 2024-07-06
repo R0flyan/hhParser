@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const App = () => {
@@ -7,11 +7,25 @@ const App = () => {
   const [salaryFilter, setSalaryFilter] = useState('');
   const [requirementFilter, setRequirementFilter] = useState('');
   const [vacancies, setVacancies] = useState([]);
+  const [vacancyCount, setVacancyCount] = useState(0);
 
+  useEffect(() => {
+    fetchVacancyCount();
+  }, []);
+
+  const fetchVacancyCount = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/vacancies/count');
+      setVacancyCount(response.data.count);
+    } catch (error) {
+      console.error('Error fetching vacancy count:', error);
+    }
+  };
   const search = async () => {
     try {
       const response = await axios.post('http://localhost:8000/vacancies', { keyword });
       setVacancies(response.data);
+      fetchVacancyCount();
     } catch (error) {
       console.error(error);
     }
@@ -70,6 +84,9 @@ const App = () => {
         <label>Требования:
           <input type='text' value={requirementFilter} onChange={handleRequirementFilterChange} />
         </label>
+      </div>
+      <div className='vacamcy_count'>
+        <h2>Вакансий найдено: {vacancyCount}</h2>
       </div>
       <div className='vacancy_list'>
         <ol>

@@ -76,6 +76,16 @@ def get_vacancies(search: SearchRequest, min_salary: int = None):
     save_to_db(vacancies)
     return vacancies['items']
 
+@app.get("/vacancies/count")
+def get_vacancies_count():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT COUNT(*) FROM vacancies;")
+    count = cursor.fetchone()[0]
+    cursor.close()
+    connection.close()
+    return {"count": count}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
