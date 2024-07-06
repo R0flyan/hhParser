@@ -55,11 +55,11 @@ const App = () => {
     return filteredVacancies;
   };
 
-  const handleSalaryFilterChange = (e) => {
+  const SalaryFilterChange = (e) => {
     setSalaryFilter(e.target.value);
   };
 
-  const handleRequirementFilterChange = (e) => {
+  const RequirementFilterChange = (e) => {
     setRequirementFilter(e.target.value);
   };
 
@@ -78,11 +78,11 @@ const App = () => {
       <div className='filters'>
         <h3>Фильтры:</h3>
         <label>Минимальная зарплата:
-          <input type='number' value={salaryFilter} onChange={handleSalaryFilterChange} />
+          <input type='number' value={salaryFilter} onChange={SalaryFilterChange} />
         </label>
         <br />
         <label>Требования:
-          <input type='text' value={requirementFilter} onChange={handleRequirementFilterChange} />
+          <input type='text' value={requirementFilter} onChange={RequirementFilterChange} />
         </label>
       </div>
       <div className='vacamcy_count'>
