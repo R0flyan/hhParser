@@ -30,7 +30,12 @@ const App = () => {
     }
 
     if (requirementFilter) {
-      filteredVacancies = filteredVacancies.filter(vacancy => vacancy.snippet.requirement.toLowerCase().includes(requirementFilter.toLowerCase()));
+      filteredVacancies = filteredVacancies.filter(vacancy => {
+        if (vacancy.snippet.requirement && typeof vacancy.snippet.requirement === 'string') {
+          return vacancy.snippet.requirement.toLowerCase().includes(requirementFilter.toLowerCase());
+        }
+        return false;
+      });
     }
 
     return filteredVacancies;

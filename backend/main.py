@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
 import psycopg2
-import os
 
 app = FastAPI()
 
@@ -26,7 +25,6 @@ def fetch_vacancies(keyword, min_salary=None):
     url = 'https://api.hh.ru/vacancies'
     params = {
         'text': keyword,
-        'area': 1,
         'page': 0,
         'per_page': 40
     }
@@ -48,10 +46,6 @@ def get_connection():
         host="host.docker.internal"
     )
     return connection
-# def get_connection():
-#     DATABASE_URL = os.getenv('postgresql://postgres:Barca5020pgsql@<localhost>:5432/postgres')
-#     connection = psycopg2.connect(DATABASE_URL)
-#     return connection
 
 def clear_table():
     connection = get_connection()
